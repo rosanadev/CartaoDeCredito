@@ -1,7 +1,7 @@
 public class CartaoDeCredito {
         private int numero;
         private String nomeTitular;
-        private String cpfTitular;
+        private String cpf;
         private float limite;
         private float totalFatura;
 
@@ -17,23 +17,23 @@ public class CartaoDeCredito {
                 return this.nomeTitular;
         }
                 
-        public void setNomeTitular(String nomeTitular) {
-                this.nomeTitular = nomeTitular;
+        public void setNomeTitular(String nome) {
+                this.nomeTitular = nome;
         }
 
-        public String getCpfTitular() {
-                return this.cpfTitular;
+        public String getCpf() {
+                return this.cpf;
         }
                 
-        public void  setCpfTitular(String cpfTitular) {
-                this.cpfTitular = cpfTitular;
+        public void  setCpf(String cpf) {
+                this.cpf = cpf;
         }
                 
-        public String getLimite() {
+        public double getLimite() {
                 return this.limite;
         }
                 
-        public void  setLimite(float limite) {
+        public void  setLimite(double limite) {
                 this.limite = limite;
         }
                 
@@ -41,11 +41,19 @@ public class CartaoDeCredito {
                 return this.totalFatura;
         }
                 
-        public void  setTotalFatura(float totalFatura) {
-                this.totalFatura = totalFatura;
+        public void  setTotalFatura(double total) {
+                this.totalFatura = total;
         }
+        
+        public double consultarLimite(){
+        return limite;
+            }
+        
+    public double consultarTotalFatura(){
+        return totalFatura;
+            }
 
-        public void realizarCompra(float valor) {
+        public void realizarCompra(double valor) {
             if (valor <= this.limite){
                 double limiteAnterior = this.getLimite()
                 this.setLimite(limiteAnterior - valor);
