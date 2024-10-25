@@ -2,10 +2,9 @@ import java.util.Scanner;
 
 public class Principal {
     public static void main(String[] args) {
-
         CartaoDeCredito c = new CartaoDeCredito();
-        c.cpfTitular = "12312352636";
-        c.limite = 100;
+        c.cpfTitular("12312352636");
+        c.limite(100);
         Scanner sc = new Scanner(System.in);
         int opcao = 1;
 
