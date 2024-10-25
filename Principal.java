@@ -3,8 +3,8 @@ import java.util.Scanner;
 public class Principal {
     public static void main(String[] args) {
         CartaoDeCredito c = new CartaoDeCredito();
-        c.cpfTitular("12312352636");
-        c.limite(100);
+        c.setCpf("12312352636");
+        c.setLimite(100);
         Scanner sc = new Scanner(System.in);
         int opcao = 1;
 
@@ -34,9 +34,7 @@ public class Principal {
                 default:
                     System.out.println("Opção inválida");
                     break;
-
             }
-
         } while (opcao != 0);
 
         sc.close();
