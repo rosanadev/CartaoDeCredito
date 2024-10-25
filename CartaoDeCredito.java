@@ -9,7 +9,7 @@ public class CartaoDeCredito {
                 return this.numero;
         }
 
-        public void setNumero() {
+        public void setNumero(int numero) {
                 this.numero = numero;
         }
     
@@ -17,7 +17,7 @@ public class CartaoDeCredito {
                 return this.nomeTitular;
         }
                 
-        public void setNomeTitular() {
+        public void setNomeTitular(String nomeTitular) {
                 this.nomeTitular = nomeTitular;
         }
 
@@ -25,7 +25,7 @@ public class CartaoDeCredito {
                 return this.cpfTitular;
         }
                 
-        public void  setCpfTitular() {
+        public void  setCpfTitular(String cpfTitular) {
                 this.cpfTitular = cpfTitular;
         }
                 
@@ -33,7 +33,7 @@ public class CartaoDeCredito {
                 return this.limite;
         }
                 
-        public void  setLimite() {
+        public void  setLimite(float limite) {
                 this.limite = limite;
         }
                 
@@ -41,11 +41,11 @@ public class CartaoDeCredito {
                 return this.totalFatura;
         }
                 
-        public void  setTotalFatura() {
+        public void  setTotalFatura(float totalFatura) {
                 this.totalFatura = totalFatura;
         }
 
-        public void realizarCompra(double valor) {
+        public void realizarCompra(float valor) {
             if (valor <= this.limite){
                 double limiteAnterior = this.getLimite()
                 this.setLimite(limiteAnterior - valor);
