@@ -54,20 +54,28 @@ public class CartaoDeCredito {
     }
 
     public void realizarCompra(double valor) {
-        if (valor <= this.limite) {
-            double limiteAnterior = this.getLimite();
-            this.setLimite(limiteAnterior - valor);
-            double total = this.getTotalFatura();
-            this.setTotalFatura(total + valor);
+        if (valor <= limite) {
+            limite -= valor;
+            totalFatura += valor; 
             System.out.println("Compra realizada com sucesso!");
         } else {
             System.out.println("Você não possui limite necessário para essa compra");
         }
     }
+
+    public void realizarCompra(double valor, double percentualCashback) {
+        if (valor <= limite) {
+            limite -= valor;
+            totalFatura += valor; 
+            double cashback = valor * percentualCashback;
+
+                System.out.println("Compra realizada com sucesso!");
+                System.out.println("Você recebeu um cashback de: R$ " + cashback);
+            } else {
+                System.out.println("Você não possui limite necessário para essa compra");
+            }
+    }
 }
-
-
-
 
 
     
