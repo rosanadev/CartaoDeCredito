@@ -4,6 +4,24 @@ public class CartaoDeCredito {
     private String cpf;
     private double limite;
     private double totalFatura;
+    private double cashback;
+
+public CartaoDeCredito (int numero, String nomeTitular, String cpf) {
+        this.numero = numero;
+        this.nomeTitular = nomeTitular;
+        this.cpf = cpf;
+        this.limite = 100;
+        this.totalFatura = 0;
+    }
+
+public CartaoDeCredito (int numero, String nomeTitular, String cpf, double limite, double cashback) {
+        this.numero = numero;
+        this.nomeTitular = nomeTitular;
+        this.cpf = cpf;
+        this.limite = limite;
+        this.totalFatura = 0;
+        this.cashback = cashback;
+    }
 
     public int getNumero() {
         return this.numero;
@@ -54,23 +72,27 @@ public class CartaoDeCredito {
     }
 
     public void realizarCompra(double valor) {
-        if (valor <= limite) {
-            limite -= valor;
-            totalFatura += valor; 
-            System.out.println("Compra realizada com sucesso!");
+        if (valor <= this.limite) {
+        double limiteAnterior = this.getLimite();
+        this.setLimite(limiteAnterior - valor);
+        double total = this.getTotalFatura();
+        this.setTotalFatura(total + valor);
+        System.out.println("Compra realizada com sucesso!");
         } else {
             System.out.println("Você não possui limite necessário para essa compra");
         }
     }
 
-    public void realizarCompra(double valor, double percentualCashback) {
-        if (valor <= limite) {
-            limite -= valor;
-            totalFatura += valor; 
-            double cashback = valor * percentualCashback;
-
-                System.out.println("Compra realizada com sucesso!");
-                System.out.println("Você recebeu um cashback de: R$ " + cashback);
+    public void realizarCompra(double valor, boolean cashback) {
+        if (valor <= this.limite && cashback){
+            double percentCashback = (valor/100) * this.cashback;
+            double valorCompra = valor - percentCashback;
+            double limiteAnterior = this.getLimite();
+            this.setLimite(limiteAnterior - valorCompra);
+            double total = this.getTotalFatura();
+            this.setTotalFatura(total + valorCompra);
+            System.out.println("Compra realizada com sucesso!");
+            System.out.println("Você recebeu um cashback de: R$ " +  percentCashback);
             } else {
                 System.out.println("Você não possui limite necessário para essa compra");
             }
