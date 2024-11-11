@@ -1,23 +1,18 @@
 public class CartaoDeCredito {
     private int numero;
-    private String nomeTitular;
-    private String cpf;
+    private Cliente titular;
     private double limite;
     private double totalFatura;
     private double cashback;
 
 public CartaoDeCredito (int numero, String nomeTitular, String cpf) {
         this.numero = numero;
-        this.nomeTitular = nomeTitular;
-        this.cpf = cpf;
         this.limite = 100;
         this.totalFatura = 0;
     }
 
 public CartaoDeCredito (int numero, String nomeTitular, String cpf, double limite, double cashback) {
         this.numero = numero;
-        this.nomeTitular = nomeTitular;
-        this.cpf = cpf;
         this.limite = limite;
         this.totalFatura = 0;
         this.cashback = cashback;
@@ -29,22 +24,6 @@ public CartaoDeCredito (int numero, String nomeTitular, String cpf, double limit
 
     public void setNumero(int numero) {
         this.numero = numero;
-    }
-
-    public String getNomeTitular() {
-        return this.nomeTitular;
-    }
-
-    public void setNomeTitular(String nome) {
-        this.nomeTitular = nome;
-    }
-
-    public String getCpf() {
-        return this.cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
 
     public double getLimite() {
