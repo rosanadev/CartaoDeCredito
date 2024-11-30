@@ -1,50 +1,58 @@
-import java.util.Scanner;
+public class CartaoDeCredito {
+    private int numero;
+    private Cliente titular;
+    protected double limite;
+    private double totalFatura;
 
-public class Principal {
-    public static void main(String[] args) {
-        Cliente cliente = new Cliente("Rosana", "12312352636", "rosana@email.com", "11999999999");
-        CartaoDeCredito cartao = new CartaoDeCredito(123, cliente);
+    public CartaoDeCredito (int numero, Cliente titular) {
+        this.numero = numero;
+        this.limite = 100;
+        this.totalFatura = 0;
+        this.titular = titular;
+    }
 
-        Scanner sc = new Scanner(System.in);
-        int opcao;
+    public CartaoDeCredito (int numero, double limite, Cliente titular) {
+        this.numero = numero;
+        this.limite = limite;
+        this.totalFatura = 0;
+        this.titular = titular;
+    }
 
-        do {
-            System.out.println("\nMenu:");
-            System.out.println("1 - Consultar Limite");
-            System.out.println("2 - Consultar Fatura");
-            System.out.println("3 - Realizar Compra");
-            System.out.println("4 - Exibir Histórico de Transações");
-            System.out.println("0 - Sair");
-            System.out.print("Escolha uma opção: ");
-            opcao = sc.nextInt();
+    public int getNumero() {
+        return this.numero;
+    }
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+    public double getLimite() {
+        return this.limite;
+    }
+    public void setLimite(double limite) {
+        this.limite = limite;
+    }
+    public double getTotalFatura() {
+        return this.totalFatura;
+    }
+    public void setTotalFatura(double total) {
+        this.totalFatura = total;
+    }
 
-            switch (opcao) {
-                case 1:
-                    System.out.println("Limite disponível: R$ " + cartao.getLimite());
-                    break;
-                case 2:
-                    System.out.println("Total da fatura: R$ " + cartao.getTotalFatura());
-                    break;
-                case 3:
-                    System.out.print("Digite o valor da compra: ");
-                    double valor = sc.nextDouble();
-                    sc.nextLine(); // Limpa o buffer
-                    System.out.print("Digite a descrição da compra: ");
-                    String descricao = sc.nextLine();
-                    cartao.realizarCompra(valor, descricao);
-                    break;
-                case 4:
-                    cartao.exibirHistorico();
-                    break;
-                case 0:
-                    System.out.println("Saindo...");
-                    break;
-                default:
-                    System.out.println("Opção inválida.");
-                    break;
-            }
-        } while (opcao != 0);
+    public double consultarLimite(){
+        return limite;
+    }
 
-        sc.close();
+    public double consultarTotalFatura(){
+        return totalFatura;
+    }
+
+    public void realizarCompra(double valor) {
+        if (valor <= this.limite){
+            double limiteAnterior = this.getLimite();
+            this.setLimite(limiteAnterior - valor);
+            double total = this.getTotalFatura();
+            this.setTotalFatura(total + valor);
+        } else {
+            System.out.println("Você não possui limite necessario para essa compra");
+        }
     }
 }
