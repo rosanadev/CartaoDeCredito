@@ -2,38 +2,45 @@ import java.util.Scanner;
 
 public class Principal {
     public static void main(String[] args) {
-       CartaoDeCredito c = new CartaoDeCredito(123, "Rosana", "12312352636");
-        c.setCpf("12312352636");
-        c.setLimite(100);
-        Scanner sc = new Scanner(System.in);
+        Cliente cliente = new Cliente("Rosana", "12312352636", "rosana@email.com", "11999999999");
+        CartaoDeCredito cartao = new CartaoDeCredito(123, cliente);
 
-         int opcao = 0;
-       
+        Scanner sc = new Scanner(System.in);
+        int opcao;
+
         do {
+            System.out.println("\nMenu:");
             System.out.println("1 - Consultar Limite");
             System.out.println("2 - Consultar Fatura");
-            System.out.println("3 - Realizar compra simples");
+            System.out.println("3 - Realizar Compra");
+            System.out.println("4 - Exibir Histórico de Transações");
             System.out.println("0 - Sair");
-
+            System.out.print("Escolha uma opção: ");
             opcao = sc.nextInt();
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Limite disponível: R$ " + c.consultarLimite());
+                    System.out.println("Limite disponível: R$ " + cartao.getLimite());
                     break;
                 case 2:
-                    System.out.println("Total da fatura: R$ " + c.consultarTotalFatura());
+                    System.out.println("Total da fatura: R$ " + cartao.getTotalFatura());
                     break;
                 case 3:
-                    System.out.println("Digite o valor da compra");
+                    System.out.print("Digite o valor da compra: ");
                     double valor = sc.nextDouble();
-                    c.realizarCompra(valor);
+                    sc.nextLine(); // Limpa o buffer
+                    System.out.print("Digite a descrição da compra: ");
+                    String descricao = sc.nextLine();
+                    cartao.realizarCompra(valor, descricao);
+                    break;
+                case 4:
+                    cartao.exibirHistorico();
                     break;
                 case 0:
                     System.out.println("Saindo...");
                     break;
                 default:
-                    System.out.println("Opção inválida");
+                    System.out.println("Opção inválida.");
                     break;
             }
         } while (opcao != 0);
