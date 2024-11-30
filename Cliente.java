@@ -1,13 +1,18 @@
 public class Cliente {
-
     private String nome;
     private String cpf;
-    private String cnpj;
     private String email;
     private String telefone;
 
+    public Cliente(String nome, String cpf, String email, String telefone) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.telefone = telefone;
+    }
+
     public String getNome() {
-        return this.nome;
+        return nome;
     }
 
     public void setNome(String nome) {
@@ -15,23 +20,15 @@ public class Cliente {
     }
 
     public String getCpf() {
-        return this.cpf;
+        return cpf;
     }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public String getCnpj() {
-        return this.cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     public void setEmail(String email) {
@@ -39,11 +36,15 @@ public class Cliente {
     }
 
     public String getTelefone() {
-        return this.telefone;
+        return telefone;
     }
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Nome: " + nome + ", CPF: " + cpf + ", Email: " + email + ", Telefone: " + telefone;
+    }
 }
